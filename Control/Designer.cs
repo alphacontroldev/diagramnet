@@ -1026,37 +1026,43 @@ namespace Dalssoft.DiagramNet
 
 		private void EndAddElement(Rectangle selectionRectangle)
 		{
-			BaseElement el;
-			switch (document.ElementType)
-			{
-				case ElementType.Rectangle:
-					el = new RectangleElement(selectionRectangle);
-					break;
-				case ElementType.RectangleNode:
-					el = new RectangleNode(selectionRectangle);
-					break;
-				case ElementType.Elipse:
-					el = new ElipseElement(selectionRectangle);
-					break;
-				case ElementType.ElipseNode:
-					el = new ElipseNode(selectionRectangle);
-					break;
-				case ElementType.CommentBox:
-					el = new CommentBoxElement(selectionRectangle);
-					break;
+			var el = CreateElementInstance(selectionRectangle);
+
+		    Document.AddElement(el);
+			
+			Document.Action = DesignerAction.Select;	
+		}
+        protected virtual BaseElement CreateElementInstance(Rectangle rectangle)
+        {
+            BaseElement el;
+            switch (Document.ElementType)
+            {
+                case ElementType.Rectangle:
+                    el = new RectangleElement(rectangle);
+                    break;
+                case ElementType.RectangleNode:
+                    el = new RectangleNode(rectangle);
+                    break;
+                case ElementType.Elipse:
+                    el = new ElipseElement(rectangle);
+                    break;
+                case ElementType.ElipseNode:
+                    el = new ElipseNode(rectangle);
+                    break;
+                case ElementType.CommentBox:
+                    el = new CommentBoxElement(rectangle);
+                    break;
                 case ElementType.CommentBoxNode:
-                    el = new CommentBoxNode(selectionRectangle);
+                    el = new CommentBoxNode(rectangle);
                     break;
                 default:
-					el = new RectangleNode(selectionRectangle);
-					break;
-			}
-			
-			document.AddElement(el);
-			
-			document.Action = DesignerAction.Select;	
-		}
-		#endregion
+                    el = new RectangleNode(rectangle);
+                    break;
+            }
+            return el;
+        }
+
+        #endregion
 
 		#region Edit Label
 		private void StartEditLabel()
