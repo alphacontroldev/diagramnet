@@ -12,7 +12,7 @@ namespace Dalssoft.DiagramNet
 		[NonSerialized]
 		private ConnectorController controller;
 
-		internal ConnectorElement(NodeElement parent): base(new Rectangle(0, 0, 0, 0))
+	    public ConnectorElement(NodeElement parent): base(new Rectangle(0, 0, 0, 0))
 		{
 			parentElement = parent;
 			borderColor = Color.Black;
