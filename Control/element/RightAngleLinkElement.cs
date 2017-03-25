@@ -177,7 +177,7 @@ namespace Dalssoft.DiagramNet
 		}
 		#endregion
 
-		internal override void Draw(Graphics g)
+	    protected internal override void Draw(Graphics g)
 		{
 			IsInvalidated = false;
 

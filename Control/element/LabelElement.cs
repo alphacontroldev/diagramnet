@@ -357,7 +357,7 @@ namespace Dalssoft.DiagramNet
 			return b;
 		}
 
-		internal override void Draw(System.Drawing.Graphics g)
+	    protected internal override void Draw(System.Drawing.Graphics g)
 		{
 			Rectangle r = GetUnsignedRectangle();
 			

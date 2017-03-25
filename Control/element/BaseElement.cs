@@ -113,7 +113,7 @@ namespace Dalssoft.DiagramNet
 				OnAppearanceChanged(new EventArgs());
 			}
 		}
-		internal virtual void Draw(Graphics g)
+		protected internal virtual void Draw(Graphics g)
 		{
 			IsInvalidated = false;
 		}
