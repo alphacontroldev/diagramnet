@@ -49,6 +49,7 @@ namespace Dalssoft.DiagramNet
 		#region Add Methods
 		public void AddElement(BaseElement el)
 		{
+            if (el == null) return;
 			elements.Add(el);
 			el.AppearanceChanged +=new EventHandler(element_AppearanceChanged);
 			OnAppearancePropertyChanged(new EventArgs());
