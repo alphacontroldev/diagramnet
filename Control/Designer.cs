@@ -436,8 +436,7 @@ namespace Dalssoft.DiagramNet
                 if (isAddLink)
                 {
                     selectedElement = document.FindElement(dragPoint);
-                    if ((selectedElement is ConnectorElement)
-                        && (document.CanAddLink(connStart, (ConnectorElement)selectedElement)))
+                    if (CanAddLink(connStart, selectedElement))
                         linkLine.Connector2 = (ConnectorElement)selectedElement;
                     else
                         linkLine.Connector2 = connEnd;
@@ -451,6 +450,11 @@ namespace Dalssoft.DiagramNet
             }
 
             base.OnMouseMove(e);
+        }
+        protected virtual bool CanAddLink(ConnectorElement start, BaseElement end)
+        {
+            var connector = end as ConnectorElement;
+            return connector != null && document.CanAddLink(start, connector);
         }
 
         protected override void OnMouseUp(MouseEventArgs e)
