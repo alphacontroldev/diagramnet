@@ -650,6 +650,8 @@ namespace Dalssoft.DiagramNet
 			}
 		}
 
+	    public bool AlignToGrid { get; set;}
+
 		#endregion
 
 		#region Draw Methods
