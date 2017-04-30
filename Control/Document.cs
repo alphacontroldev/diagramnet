@@ -724,32 +724,23 @@ namespace Dalssoft.DiagramNet
 
 		internal void DrawGrid(Graphics g, Rectangle clippingRegion)
 		{
-//			ControlPaint.DrawGrid(g, clippingRegion, gridSize, Color.LightGray);
-		
-			Pen p = new Pen(new HatchBrush(HatchStyle.LargeGrid | HatchStyle.Percent90, Color.LightGray, Color.Transparent), 1);
+		    var brush = new HatchBrush(HatchStyle.LargeGrid | HatchStyle.Percent90, Color.LightGray, Color.Transparent);
+		    var pen = new Pen(brush, 1);
 
-			//Pen p = new Pen(Color.LightGray, 1);
+			var maxX = windowSize.Width;
+			var maxY = windowSize.Height;
 			
-			int maxX = location.X + this.Size.Width;
-			int maxY = location.Y + this.Size.Height;
+		    var gridSizeWidth = gridSize.Width * zoom;
+		    var startX = -clippingRegion.X % gridSizeWidth;
+		    for (var i = startX; i < maxX; i += gridSizeWidth)
+		        g.DrawLine(pen, i, 0, i, maxY);
 
-			if (windowSize.Width / zoom > maxX)
-				maxX = (int)(windowSize.Width / zoom);
+		    var gridSizeHeight = gridSize.Height * zoom;
+		    var startY = -clippingRegion.Y % gridSizeHeight;
+		    for (var i = startY; i < maxY; i += gridSizeHeight)
+		        g.DrawLine(pen, 0, i, maxX, i);
 
-			if (windowSize.Height / zoom > maxY)
-				maxY = (int)(windowSize.Height / zoom);
-
-			for(int i = 0; i < maxX; i += gridSize.Width)
-			{
-				g.DrawLine(p, i, 0, i, maxY);
-			}
-
-			for(int i = 0; i < maxY; i += gridSize.Height)
-			{
-				g.DrawLine(p, 0, i, maxX, i);
-			}
-
-			p.Dispose();
+		    pen.Dispose();
 		}
 		#endregion
 
