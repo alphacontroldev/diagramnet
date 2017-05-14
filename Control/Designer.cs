@@ -1017,23 +1017,32 @@ namespace Dalssoft.DiagramNet
 
                 isAddLink = true;
 
-                switch (document.LinkType)
-                {
-                    case (LinkType.Straight):
-                        linkLine = new StraightLinkElement(connStart, connEnd);
-                        break;
-                    case (LinkType.RightAngle):
-                        linkLine = new RightAngleLinkElement(connStart, connEnd);
-                        break;
-                }
-                linkLine.Visible = true;
-                linkLine.BorderColor = Color.FromArgb(150, Color.Black);
-                linkLine.BorderWidth = 1;
+                linkLine = CreateElementInstance(connStart, connEnd);
 
                 this.Invalidate(linkLine, true);
 
                 OnElementConnecting(new ElementConnectEventArgs(connStart.ParentElement, null, linkLine));
             }
+        }
+        protected virtual BaseLinkElement CreateElementInstance(ConnectorElement connStart, ConnectorElement connEnd)
+        {
+            BaseLinkElement linkLine;
+
+            switch (document.LinkType)
+            {
+                default:
+                case (LinkType.Straight):
+                    linkLine = new StraightLinkElement(connStart, connEnd);
+                    break;
+                case (LinkType.RightAngle):
+                    linkLine = new RightAngleLinkElement(connStart, connEnd);
+                    break;
+            }
+            linkLine.Visible = true;
+            linkLine.BorderColor = Color.FromArgb(150, Color.Black);
+            linkLine.BorderWidth = 1;
+
+            return linkLine;
         }
 
         private void EndAddLink()
