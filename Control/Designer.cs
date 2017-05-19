@@ -288,7 +288,6 @@ namespace Dalssoft.DiagramNet
                     if (e.Button == MouseButtons.Left)
                     {
                         mousePoint = Gsc2Goc(new Point(e.X, e.Y));
-                        mousePoint = AlignToGrid(mousePoint);
 
                         //Verify resize action
                         StartResizeElement(mousePoint);
@@ -302,6 +301,7 @@ namespace Dalssoft.DiagramNet
 
                         // Search element by click
                         selectedElement = document.FindElement(mousePoint);
+                        mousePoint = AlignToGrid(mousePoint);
 
                         if (selectedElement != null)
                         {
