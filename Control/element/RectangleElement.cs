@@ -39,14 +39,14 @@ namespace Dalssoft.DiagramNet
 			}
 			set
 			{
-
                 label.Location = value;
                 base.Location = value;
+			    UpdateConnectorsPosition();
 			}
 		}
+	    public virtual void UpdateConnectorsPosition() { }
 
-
-		public override Size Size
+	    public override Size Size
 		{
 			get
 			{
@@ -55,7 +55,8 @@ namespace Dalssoft.DiagramNet
 			set
 			{
 				base.Size = value;
-			}
+			    UpdateConnectorsPosition();
+            }
 		}
 
 		public virtual Color FillColor1
