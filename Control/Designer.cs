@@ -1050,7 +1050,8 @@ namespace Dalssoft.DiagramNet
             if (connEnd != linkLine.Connector2)
             {
                 linkLine.Connector1.RemoveLink(linkLine);
-                linkLine = document.AddLink(linkLine.Connector1, linkLine.Connector2);
+                linkLine = CreateElementInstance(linkLine.Connector1, linkLine.Connector2);
+                document.AddLink(linkLine);
                 OnElementConnected(new ElementConnectEventArgs(linkLine.Connector1.ParentElement, linkLine.Connector2.ParentElement, linkLine));
             }
 

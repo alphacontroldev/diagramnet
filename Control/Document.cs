@@ -86,9 +86,7 @@ namespace Dalssoft.DiagramNet
 				else // (linkType == LinkType.RightAngle)
 					lnk = new RightAngleLinkElement(connStart, connEnd);
 
-				elements.Add(lnk);
-				lnk.AppearanceChanged +=new EventHandler(element_AppearanceChanged);
-				OnAppearancePropertyChanged(new EventArgs());
+			    AddLink(lnk);
 				return lnk;
 			}
 			else
@@ -96,6 +94,12 @@ namespace Dalssoft.DiagramNet
 				return null;
 			}
 		}
+	    public void AddLink (BaseLinkElement lnk)
+	    {
+	        elements.Add(lnk);
+	        lnk.AppearanceChanged +=new EventHandler(element_AppearanceChanged);
+	        OnAppearancePropertyChanged(new EventArgs());
+	    }
 		#endregion
 
 		#region Delete Methods
