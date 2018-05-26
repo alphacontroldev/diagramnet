@@ -98,7 +98,8 @@ namespace Dalssoft.DiagramNet
 				// IMoveController ctrl = (IMoveController) ((IControllable) this).GetController();
 				// if (!ctrl.IsMoving)
 				// 	return;
-
+                
+			    needCalcLinkLocation = true;
 				Point locBefore = this.Location;
 				Point locAfter = value;
 
