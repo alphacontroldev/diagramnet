@@ -95,9 +95,9 @@ namespace Dalssoft.DiagramNet
 			}
 			set
 			{
-				IMoveController ctrl = (IMoveController) ((IControllable) this).GetController();
-				if (!ctrl.IsMoving)
-					return;
+				// IMoveController ctrl = (IMoveController) ((IControllable) this).GetController();
+				// if (!ctrl.IsMoving)
+				// 	return;
 
 				Point locBefore = this.Location;
 				Point locAfter = value;
