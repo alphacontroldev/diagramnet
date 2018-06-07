@@ -72,8 +72,8 @@ namespace Dalssoft.DiagramNet
 			Size elSize = el.Size;
 			gp.AddRectangle(new Rectangle(elLocation.X,
 				elLocation.Y,
-				elSize.Width,
-				elSize.Height));
+				Math.Max(1, elSize.Width),
+				Math.Max(1, elSize.Height)));
 			gp.Transform(mtx);
 			Rectangle retGp = Rectangle.Round(gp.GetBounds());
 			return r.Contains (retGp);
