@@ -329,7 +329,7 @@ namespace Dalssoft.DiagramNet
            
         }
 
-		private void CalcLinkLocation()
+		public void CalcLinkLocation()
 		{
 			//CalcLink();
 
