@@ -1160,6 +1160,12 @@ namespace Dalssoft.DiagramNet
         #endregion
 
         #region Undo/Redo
+        public bool EnableUndo
+        {
+            get => undo.Enabled;
+            set => undo.Enabled = value;
+        }
+
         public void Undo()
         {
             document = (Document)undo.Undo();
