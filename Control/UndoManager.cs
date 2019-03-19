@@ -1,137 +1,89 @@
 using System;
-using System.Collections;
 using System.IO;
-using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Dalssoft.DiagramNet
 {
-	internal class UndoManager
-	{
-		protected MemoryStream[] list;
-		protected int currPos = -1;
-		protected int lastPos = -1;
-		protected bool canUndo = false;
-		protected bool canRedo = false;
-		protected int capacity;
-		protected bool enabled = true;
+    internal class UndoManager
+    {
+        protected MemoryStream[] _steps;
+        protected int _index;
+        protected int _maxIndex;
 
+        public UndoManager(int capacity)
+        {
+            _steps = new MemoryStream[capacity];
+        }
 
-		public UndoManager(int capacity)
-		{
-			list = new MemoryStream[capacity];
-			this.capacity = capacity;
-		}
+        public bool Enabled { get; set; }
+        public bool CanUndo => _index > 0;
+        public bool CanRedo => _index < _maxIndex;
 
-		public bool CanUndo
-		{
-			get
-			{
-				return (currPos != -1);
-			}
-		}
+        public void AddUndo(object o)
+        {
+            if (!Enabled) return;
 
-		public bool CanRedo
-		{
-			get
-			{
-				return (currPos != lastPos);
-			}
-		}
+            ClearStepsAbove();
+            OpenSpaceForSteps();
 
-		public bool Enabled
-		{
-			get
-			{
-				return enabled;
-			}
-			set
-			{
-				enabled = value;
-			}
-		}
+            _steps[_index] = SerializeObject(o);
+            _maxIndex = _index;
+            _index++;
+        }
+        private void ClearStepsAbove()
+        {
+            for (var i = _index; i < _steps.Length; i++)
+            {
+                _steps[i]?.Close();
+                _steps[i]?.Dispose();
+                _steps[i] = null;
+            }
+        }
+        private void OpenSpaceForSteps()
+        {
+            if (_index < _steps.Length) return;
 
-		public void AddUndo(object o)
-		{
-			if (!enabled) return;
+            _steps[0]?.Close();
+            _steps[0]?.Dispose();
 
-			currPos++;
-			if (currPos >= capacity)
-				currPos--;
+            for (var i = 1; i < _steps.Length; i++)
+                _steps[i - 1] = _steps[i];
 
-			ClearList(currPos);
+            _steps[_steps.Length - 1] = null;
+            _index--;
+        }
 
-			PushList();
+        public object Undo()
+        {
+            if (!CanUndo) throw new ApplicationException("Can't Undo.");
 
-			list[currPos] = SerializeObject(o);
-			lastPos = currPos;
-		}
+            return _index >= 0
+                ? DeserializeObject(_steps[--_index])
+                : null;
+        }
+        private object DeserializeObject(MemoryStream stream)
+        {
+            stream.Position = 0;
+            var formatter = new BinaryFormatter();
+            return formatter.Deserialize(stream);
+        }
 
-		public object Undo()
-		{
-			if (!CanUndo)
-				throw new ApplicationException("Can't Undo.");
+        public object Redo()
+        {
+            if (!CanRedo) throw new ApplicationException("Can't Undo.");
 
-			object ret = DeserializeObject(list[currPos]);
-			
-			currPos--;
-		
-			return ret;
-		}
+            return _index < _maxIndex
+                ? DeserializeObject(_steps[_index++])
+                : null;
+        }
+        private MemoryStream SerializeObject(object obj)
+        {
+            var formatter = new BinaryFormatter();
+            var stream = new MemoryStream();
+            formatter.Serialize(stream, obj);
+            stream.Position = 0;
 
-		public object Redo()
-		{
-			if (!CanRedo)
-				throw new ApplicationException("Can't Undo.");
-
-			currPos++;
-
-			return DeserializeObject(list[currPos]);
-		}
-
-		private MemoryStream SerializeObject(object o)
-		{
-			IFormatter formatter = new BinaryFormatter();
-			MemoryStream mem = new MemoryStream();
-			formatter.Serialize(mem, o);
-			mem.Position = 0;
-			return mem;
-		}
-
-		private object DeserializeObject(MemoryStream mem)
-		{
-			mem.Position = 0;
-			IFormatter formatter = new BinaryFormatter();
-			return (object) formatter.Deserialize(mem);
-		}
-
-		private void ClearList()
-		{
-			ClearList(0);
-		}
-
-		private void ClearList(int p)
-		{
-			if (currPos >= capacity - 1)
-				return;
-
-			for(int i = p; i < capacity; i++)
-			{
-				if (list[i] != null) list[i].Close();
-				list[i] = null;
-			}
-		}
-
-		private void PushList()
-		{
-			if ((currPos >= capacity - 1) && (list[currPos] != null))
-			{
-				list[0].Close();
-				for (int i = 1; i <= currPos; i++)
-				{
-					list[i - 1] = list[i];
-				}
-			}		
-		}
-	}
+            return stream;
+        }
+    }
 }
