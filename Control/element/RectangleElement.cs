@@ -2,11 +2,11 @@ using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-
+using Dalssoft.DiagramNet.Interfaces;
 
 namespace Dalssoft.DiagramNet
 {
-	[Serializable]
+    [Serializable]
 	public class RectangleElement : BaseElement, IControllable, ILabelElement
 	{
 		protected Color fillColor1 = Color.White;

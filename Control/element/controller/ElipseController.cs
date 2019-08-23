@@ -1,13 +1,13 @@
-using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using Dalssoft.DiagramNet.Interfaces;
 
 namespace Dalssoft.DiagramNet
 {
-	/// <summary>
-	/// This class is the controller for ElipseElement
-	/// </summary>
-	internal class ElipseController: RectangleController, IController
+    /// <summary>
+    /// This class is the controller for ElipseElement
+    /// </summary>
+    internal class ElipseController: RectangleController, IController
 	{
 		public ElipseController(BaseElement element): base(element)
 		{

@@ -1,13 +1,14 @@
-using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using Dalssoft.DiagramNet.Enums;
+using Dalssoft.DiagramNet.Interfaces;
 
 namespace Dalssoft.DiagramNet
 {
-	/// <summary>
-	/// This class is the controller for RectangleElement
-	/// </summary>
-	internal class RectangleController: IController, IMoveController, IResizeController
+    /// <summary>
+    /// This class is the controller for RectangleElement
+    /// </summary>
+    internal class RectangleController: IController, IMoveController, IResizeController
 	{
 		//parent element
 		protected BaseElement el;

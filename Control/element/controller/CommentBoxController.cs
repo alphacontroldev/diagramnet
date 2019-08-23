@@ -1,14 +1,12 @@
-using System;
-using System.Drawing;
-using System.Drawing.Drawing2D;
+using Dalssoft.DiagramNet.Interfaces;
 
 namespace Dalssoft.DiagramNet
 {
-	/// <summary>
-	/// This class is the controller for CommentBoxElement
-	/// </summary>
-	
-	internal class CommentBoxController: RectangleController, ILabelController
+    /// <summary>
+    /// This class is the controller for CommentBoxElement
+    /// </summary>
+
+    internal class CommentBoxController: RectangleController, ILabelController
 	{
 		public CommentBoxController(BaseElement element): base(element) {}
 

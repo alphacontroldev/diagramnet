@@ -3,11 +3,13 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using System.IO;
-using System.Text;
-using System.Xml;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.ComponentModel;
+using Dalssoft.DiagramNet.Objects;
+using Dalssoft.DiagramNet.Enums;
+using Dalssoft.DiagramNet.EventsArgs;
+using Dalssoft.DiagramNet.Interfaces;
 
 namespace Dalssoft.DiagramNet
 {
@@ -459,7 +461,7 @@ namespace Dalssoft.DiagramNet
             var connector = end as ConnectorElement;
             return connector != null && document.CanAddLink(start, connector);
         }
-        
+
         protected override void OnMouseUp(MouseEventArgs e)
         {
             Rectangle selectionRectangle = selectionArea.GetUnsignedRectangle();
@@ -550,8 +552,8 @@ namespace Dalssoft.DiagramNet
             double gridWidth = document.GridSize.Width;
             double gridHeight = document.GridSize.Height;
 
-            x = (int) (Math.Round(x / gridWidth) * gridWidth);
-            y = (int) (Math.Round(y / gridHeight) * gridHeight);
+            x = (int)(Math.Round(x / gridWidth) * gridWidth);
+            y = (int)(Math.Round(y / gridHeight) * gridHeight);
         }
         #endregion
 
@@ -958,7 +960,7 @@ namespace Dalssoft.DiagramNet
 
 
             moveAction = new MoveAction();
-            MoveAction.OnElementMovingDelegate onElementMovingDelegate = new Dalssoft.DiagramNet.MoveAction.OnElementMovingDelegate(OnElementMoving);
+            OnElementMovingDelegate onElementMovingDelegate = new OnElementMovingDelegate(OnElementMoving);
             moveAction.Start(mousePoint, document, onElementMovingDelegate);
 
 
@@ -995,7 +997,7 @@ namespace Dalssoft.DiagramNet
                     || ((document.Action == DesignerAction.Connect)
                         && (resizeAction.IsResizingLink))))
             {
-                ResizeAction.OnElementResizingDelegate onElementResizingDelegate = new ResizeAction.OnElementResizingDelegate(OnElementResizing);
+                OnElementResizingDelegate onElementResizingDelegate = new OnElementResizingDelegate(OnElementResizing);
                 resizeAction.Start(mousePoint, onElementResizingDelegate);
                 if (!resizeAction.IsResizing)
                     resizeAction = null;

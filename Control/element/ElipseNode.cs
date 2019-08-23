@@ -1,12 +1,11 @@
 using System;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.ComponentModel;
-
+using Dalssoft.DiagramNet.Interfaces;
 
 namespace Dalssoft.DiagramNet
 {
-	[Serializable]
+    [Serializable]
 	public class ElipseNode: NodeElement, IControllable, ILabelElement
 	{
 		protected ElipseElement elipse;

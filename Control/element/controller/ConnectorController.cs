@@ -1,13 +1,11 @@
-using System;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 
 namespace Dalssoft.DiagramNet
 {
-	/// <summary>
-	/// This class is the controller for ConnectorElement
-	/// </summary>
-	internal class ConnectorController: RectangleController
+    /// <summary>
+    /// This class is the controller for ConnectorElement
+    /// </summary>
+    internal class ConnectorController: RectangleController
 	{
 		public ConnectorController(ConnectorElement element): base(element)
 		{}

@@ -1,16 +1,18 @@
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Windows.Forms;
 using System.Runtime.Serialization;
 using System.Security.Permissions;
+using Dalssoft.DiagramNet.Interfaces;
+using Dalssoft.DiagramNet.Enums;
+using Dalssoft.DiagramNet.EventsArgs;
 
 namespace Dalssoft.DiagramNet
 {
-	/// <summary>
-	/// This class control the elements collection and visualization.
-	/// </summary>
-	[Serializable]
+    /// <summary>
+    /// This class control the elements collection and visualization.
+    /// </summary>
+    [Serializable]
 	public class Document: IDeserializationCallback 
 	{
 		//Draw properties

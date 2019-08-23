@@ -1,18 +1,15 @@
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Drawing.Text;
 using System.ComponentModel;
-using System.IO;
 using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Security.Permissions;
 using System.Reflection;
+using Dalssoft.DiagramNet.Interfaces;
 
 namespace Dalssoft.DiagramNet
 {
-	[
+    [
 	Serializable,
 	TypeConverter(typeof(ExpandableObjectConverter))
 	]

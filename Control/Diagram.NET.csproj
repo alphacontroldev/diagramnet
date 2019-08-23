@@ -19,7 +19,7 @@
     <DefaultTargetSchema>IE50</DefaultTargetSchema>
     <DelaySign>false</DelaySign>
     <OutputType>Library</OutputType>
-    <RootNamespace>Diagram.NET</RootNamespace>
+    <RootNamespace>Dalssoft.DiagramNet</RootNamespace>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
     <StartupObject />
     <FileUpgradeFlags>
@@ -87,22 +87,32 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssemblyInfo.cs">
+    <Compile Include="Helpers\ArrayHelper.cs" />
+    <Compile Include="Enums\CardinalDirection.cs" />
+    <Compile Include="Enums\CornerPosition.cs" />
+    <Compile Include="Enums\ElementType.cs" />
+    <Compile Include="Enums\LabelEditDirection.cs" />
+    <Compile Include="Enums\LinkType.cs" />
+    <Compile Include="Enums\Orientation.cs" />
+    <Compile Include="Interfaces\IEditLabelAction.cs" />
+    <Compile Include="Interfaces\IMoveAction.cs" />
+    <Compile Include="Interfaces\IResizeAction.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Designer.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="DesignerAction.cs">
+    <Compile Include="Enums\DesignerAction.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DiagramUtil.cs">
+    <Compile Include="Utils\DiagramUtil.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Document.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="EditLabelAction.cs">
+    <Compile Include="Objects\EditLabelAction.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ElementCollection.cs">
@@ -133,19 +143,19 @@
     <Compile Include="element\controller\ElipseController.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="element\controller\IControllable.cs">
+    <Compile Include="Interfaces\IControllable.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="element\controller\IController.cs">
+    <Compile Include="Interfaces\IController.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="element\controller\ILabelController.cs">
+    <Compile Include="Interfaces\ILabelController.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="element\controller\IMoveController.cs">
+    <Compile Include="Interfaces\IMoveController.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="element\controller\IResizeController.cs">
+    <Compile Include="Interfaces\IResizeController.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="element\controller\LineController.cs">
@@ -163,7 +173,7 @@
     <Compile Include="element\ElipseNode.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="element\ILabelElement.cs">
+    <Compile Include="Interfaces\ILabelElement.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="element\LabelElement.cs">
@@ -187,31 +197,29 @@
     <Compile Include="element\StraightLinkElement.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="events\ElementConnectEventArgs.cs">
+    <Compile Include="EventsArgs\ElementConnectEventArgs.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="events\ElementEventArgs.cs">
+    <Compile Include="EventsArgs\ElementEventArgs.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="events\ElementMouseEventArgs.cs">
+    <Compile Include="EventsArgs\ElementMouseEventArgs.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="events\ElementSelectionEventArgs.cs">
+    <Compile Include="EventsArgs\ElementSelectionEventArgs.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GeneralEnuns.cs">
+    <Compile Include="Interfaces\IContainer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="IContainer.cs">
+    <Compile Include="Interfaces\IUndoManager.cs" />
+    <Compile Include="Objects\MoveAction.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MoveAction.cs">
+    <Compile Include="Objects\ResizeAction.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ResizeAction.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="UndoManager.cs">
+    <Compile Include="Objects\UndoManager.cs">
       <SubType>Code</SubType>
     </Compile>
     <EmbeddedResource Include="Designer.resx">

@@ -1,9 +1,12 @@
 using System;
 using System.Drawing;
+using Dalssoft.DiagramNet.Enums;
+using Dalssoft.DiagramNet.Interfaces;
+using Dalssoft.DiagramNet.Utils;
 
 namespace Dalssoft.DiagramNet
 {
-	[Serializable]
+    [Serializable]
 	public class ConnectorElement: RectangleElement, IControllable 
 	{
 		private NodeElement parentElement;

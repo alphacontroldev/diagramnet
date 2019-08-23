@@ -2,11 +2,11 @@ using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.ComponentModel;
-
+using Dalssoft.DiagramNet.Interfaces;
 
 namespace Dalssoft.DiagramNet
 {
-	[Serializable]
+    [Serializable]
 	public class StraightLinkElement: BaseLinkElement, IControllable, ILabelElement
 	{
 		protected LineElement line1 = new LineElement(0,0,0,0);

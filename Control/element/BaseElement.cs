@@ -1,16 +1,13 @@
 using System;
 using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.ComponentModel;
-using System.Xml;
 
 namespace Dalssoft.DiagramNet
 {
-	/// <summary>
-	/// This is the base for all element the will be draw on the
-	/// document.
-	/// </summary>
-	[Serializable]
+    /// <summary>
+    /// This is the base for all element the will be draw on the
+    /// document.
+    /// </summary>
+    [Serializable]
 	public abstract class BaseElement
 	{
 		protected Point location;

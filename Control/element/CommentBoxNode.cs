@@ -1,11 +1,11 @@
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using Dalssoft.DiagramNet;
+using Dalssoft.DiagramNet.Interfaces;
 
 namespace Dalssoft.DiagramNet
 {
-	[Serializable]
+    [Serializable]
 	public class CommentBoxNode : RectangleNode, IControllable, ILabelElement
 	{
         protected Color fillColor1 = Color.White;

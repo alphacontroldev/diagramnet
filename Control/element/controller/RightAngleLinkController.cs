@@ -1,13 +1,15 @@
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using Dalssoft.DiagramNet.Enums;
+using Dalssoft.DiagramNet.Interfaces;
 
 namespace Dalssoft.DiagramNet
 {
-	/// <summary>
-	/// This class is the controller for RightAngleLinkElement
-	/// </summary>
-	internal class RightAngleLinkController: IController, IMoveController, IResizeController, ILabelController
+    /// <summary>
+    /// This class is the controller for RightAngleLinkElement
+    /// </summary>
+    internal class RightAngleLinkController: IController, IMoveController, IResizeController, ILabelController
 	{
 		//parent element
 		protected RightAngleLinkElement el;
@@ -63,7 +65,7 @@ namespace Dalssoft.DiagramNet
 			return false;
 		}
 
-		bool Dalssoft.DiagramNet.IController.HitTest(Rectangle r)
+		bool IController.HitTest(Rectangle r)
 		{
 			GraphicsPath gp = new GraphicsPath();
 			Matrix mtx = new Matrix();

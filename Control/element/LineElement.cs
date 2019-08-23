@@ -1,11 +1,11 @@
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-
+using Dalssoft.DiagramNet.Interfaces;
 
 namespace Dalssoft.DiagramNet
 {
-	[Serializable]
+    [Serializable]
 	public class LineElement: BaseElement, IControllable 
 	{
 		protected Point point1;

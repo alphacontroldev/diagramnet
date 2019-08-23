@@ -2,11 +2,13 @@ using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.ComponentModel;
-
+using Dalssoft.DiagramNet.Enums;
+using Dalssoft.DiagramNet.Utils;
+using Dalssoft.DiagramNet.Interfaces;
 
 namespace Dalssoft.DiagramNet
 {
-	[Serializable]
+    [Serializable]
 	public class RightAngleLinkElement: BaseLinkElement, IControllable, ILabelElement
 	{
 		internal protected LineElement[] lines = {new LineElement(0,0,0,0)};

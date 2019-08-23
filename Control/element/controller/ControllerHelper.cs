@@ -1,11 +1,11 @@
-using System;
+using Dalssoft.DiagramNet.Interfaces;
 
 namespace Dalssoft.DiagramNet
 {
-	/// <summary>
-	/// This class helps with Controllers.
-	/// </summary>
-	internal class ControllerHelper
+    /// <summary>
+    /// This class helps with Controllers.
+    /// </summary>
+    internal class ControllerHelper
 	{
 		private ControllerHelper()
 		{
